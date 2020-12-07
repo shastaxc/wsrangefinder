@@ -191,24 +191,3 @@ windower.register_event('outgoing chunk', function(id, data, modified, injected,
     end
   end
 end)
-
-windower.register_event('outgoing text',function(original,modified,blocked,ffxi,extra_stuff,extra2)
-  local splitStr = split_string(original, ' ')
-  if splitStr[1] == '/ws' or splitStr[1] == '/weaponskill' then
-    windower.add_to_chat(001, original)
-    return true
-  end
-end)
-
-function split_string(inputstr, sep)
-  if sep == nil then
-    sep = "%s"
-  end
-
-  local t={}
-  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-    table.insert(t, str)
-  end
-
-  return t
-end
